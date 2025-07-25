@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Analysis 2024</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.24.2/plotly.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f4f7fa;
+    }
+    
+    .sidebar {
+      width: 250px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar h1 {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #4a6583;
+    }
+    
+    .filter-section {
+      margin-bottom: 25px;
+    }
+    
+    .filter-section h2 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    
+    select, button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .checkbox-option input {
+      cursor: pointer;
+    }
+    
+    .checkbox-option label {
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .main-content {
+      flex: 1;
+      margin-left: 250px;
+      padding: 20px;
+    }
+    
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .chart-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      height: 350px;
+      padding: 15px;
+    }
+    
+    @media (max-width: 1200px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+      
+      .main-content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <h1>Status Analysis 2024</h1>
+    
+    <div class="filter-section">
+      <h2>Month</h2>
+      <select id="month-select">
+        <option value="all">All Months</option>
+        <!-- Month options will be added via JavaScript -->
+      </select>
+    </div>
+    
+    <div class="filter-section">
+      <h2>Categories</h2>
+      <fieldset class="checkbox-group">
+        <div class="checkbox-option">
+          <input type="checkbox" id="category-paid" value="Paid" checked>
+          <label for="category-paid">Paid</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="category-deductibles" value="Deductibles" checked>
+          <label for="category-deductibles">Deductibles</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="category-selfpay" value="Self Pay" checked>
+          <label for="category-selfpay">Self Pay</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="category-responsibility" value="Patient Responsibility" checked>
+          <label for="category-responsibility">Patient Responsibility</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="category-notpayable" value="Not Payable" checked>
+          <label for="category-notpayable">Not Payable</label>
+        </div>
+        <div class="checkbox-option">
+          <input type="checkbox" id="category-unpaid" value="Unpaid" checked>
+          <label for="category-unpaid">Unpaid</label>
+        </div>
+      </fieldset>
+    </div>
+  </aside>
+  
+  <main class="main-content">
+    <div class="grid-container">
+      <div class="chart-container" id="total-sales-chart"></div>
+      <div class="chart-container" id="mom-growth-chart"></div>
+      <div class="chart-container" id="category-trends-chart"></div>
+      <div class="chart-container" id="stacked-composition-chart"></div>
+      <div class="chart-container" id="category-share-chart"></div>
+      <div class="chart-container" id="ytd-cumulative-chart"></div>
+    </div>
+  </main>
+  
+  <script>
+    // The JSON data hardcoded as a JavaScript variable
+    const rawData = [
+      {
+        "Dr Jihad": "Month",
+        "": "Paid",
+        "__1": "Deductibles",
+        "__2": "Self Pay",
+        "__3": "Patient Responsibility",
+        "__4": "Not Payable",
+        "__5": "Unpaid",
+        "__6": "Total"
+      },
+      {
+        "Dr Jihad": "Jan-24",
+        "": 1027,
+        "__1": 74,
+        "__2": 26,
+        "__3": 17,
+        "__4": 55,
+        "__5": 257,
+        "__6": 1456
+      },
+      {
+        "Dr Jihad": "Feb-24",
+        "": 1097,
+        "__1": 54,
+        "__2": 25,
+        "__3": 38,
+        "__4": 49,
+        "__5": 223,
+        "__6": 1486
+      },
+      {
+        "Dr Jihad": "Mar-24",
+        "": 1235,
+        "__1": 45,
+        "__2": 41,
+        "__3": 28,
+        "__4": 68,
+        "__5": 232,
+        "__6": 1649
+      },
+      {
+        "Dr Jihad": "Apr-24",
+        "": 2718,
+        "__1": 141,
+        "__2": 81,
+        "__3": 56,
+        "__4": 126,
+        "__5": 838,
+        "__6": 3960
+      },
+      {
+        "Dr Jihad": "May-24",
+        "": 2535,
+        "__1": 213,
+        "__2": 74,
+        "__3": 71,
+        "__4": 158,
+        "__5": 738,
+        "__6": 3789
+      },
+      {
+        "Dr Jihad": "Jun-24",
+        "": 2809,
+        "__1": 285,
+        "__2": 109,
+        "__3": 109,
+        "__4": 116,
+        "__5": 932,
+        "__6": 4360
+      },
+      {
+        "Dr Jihad": "Jul-24",
+        "": 3172,
+        "__1": 211,
+        "__2": 252,
+        "__3": 74,
+        "__4": 199,
+        "__5": 996,
+        "__6": 4904
+      },
+      {
+        "Dr Jihad": "Aug-24",
+        "": 2825,
+        "__1": 187,
+        "__2": 55,
+        "__3": 126,
+        "__4": 156,
+        "__5": 776,
+        "__6": 4125
+      },
+      {
+        "Dr Jihad": "Sep-24",
+        "": 3161,
+        "__1": 214,
+        "__2": 135,
+        "__3": 71,
+        "__4": 218,
+        "__5": 1035,
+        "__6": 4834
+      },
+      {
+        "Dr Jihad": "Oct-24",
+        "": 3606,
+        "__1": 216,
+        "__2": 97,
+        "__3": 72,
+        "__4": 158,
+        "__5": 1210,
+        "__6": 5359
+      },
+      {
+        "Dr Jihad": "Nov-24",
+        "": 3100,
+        "__1": 235,
+        "__2": 160,
+        "__3": 101,
+        "__4": 224,
+        "__5": 1134,
+        "__6": 4954
+      },
+      {
+        "Dr Jihad": "Dec-24",
+        "": 2826,
+        "__1": 221,
+        "__2": 202,
+        "__3": 58,
+        "__4": 233,
+        "__5": 1594,
+        "__6": 5134
+      },
+      {
+        "Dr Jihad": "TOTAL",
+        "": 30111,
+        "__1": 2096,
+        "__2": 1257,
+        "__3": 821,
+        "__4": 1760,
+        "__5": 9965,
+        "__6": 46010
+      }
+    ];
+
+    // Data processing and visualization
+    document.addEventListener('DOMContentLoaded', function() {
+      // Data preprocessing
+      const categoryMapping = {
+        "": "Paid",
+        "__1": "Deductibles",
+        "__2": "Self Pay",
+        "__3": "Patient Responsibility",
+        "__4": "Not Payable",
+        "__5": "Unpaid",
+        "__6": "Total"
+      };
+
+      const processedData = rawData.slice(1, -1).map(row => {
+        const processed = {
+          month: row["Dr Jihad"],
+          monthSortKey: getMonthSortKey(row["Dr Jihad"]),
+          Paid: row[""],
+          Deductibles: row["__1"],
+          "Self Pay": row["__2"],
+          "Patient Responsibility": row["__3"],
+          "Not Payable": row["__4"],
+          Unpaid: row["__5"],
+          Total: row["__6"]
+        };
+        return processed;
+      });
+
+      // Sort by month
+      processedData.sort((a, b) => a.monthSortKey - b.monthSortKey);
+      
+      // Calculate Month-over-Month Growth
+      for (let i = 1; i < processedData.length; i++) {
+        const prevMonth = processedData[i-1];
+        const currMonth = processedData[i];
+        
+        currMonth.growthPercent = ((currMonth.Total - prevMonth.Total) / prevMonth.Total) * 100;
+      }
+      
+      // Calculate YTD cumulative
+      let cumulative = 0;
+      processedData.forEach(month => {
+        cumulative += month.Total;
+        month.cumulative = cumulative;
+      });
+
+      // Populate month select dropdown
+      const monthSelect = document.getElementById('month-select');
+      processedData.forEach(month => {
+        const option = document.createElement('option');
+        option.value = month.month;
+        option.textContent = month.month;
+        monthSelect.appendChild(option);
+      });
+
+      // Initial render of all charts
+      renderCharts('all');
+
+      // Add event listeners for filter changes
+      monthSelect.addEventListener('change', updateCharts);
+      document.querySelectorAll('.checkbox-option input').forEach(checkbox => {
+        checkbox.addEventListener('change', updateCharts);
+      });
+
+      // Chart rendering functions
+      function renderCharts(selectedMonth) {
+        const selectedCategories = getSelectedCategories();
+        
+        renderTotalSalesChart(selectedMonth, selectedCategories);
+        renderMoMGrowthChart(selectedMonth);
+        renderCategoryTrendsChart(selectedMonth, selectedCategories);
+        renderStackedCompositionChart(selectedMonth, selectedCategories);
+        renderCategoryShareChart(selectedMonth, selectedCategories);
+        renderYTDCumulativeChart(selectedMonth);
+      }
+
+      function updateCharts() {
+        const selectedMonth = document.getElementById('month-select').value;
+        renderCharts(selectedMonth);
+      }
+
+      function getSelectedCategories() {
+        return Array.from(document.querySelectorAll('.checkbox-option input:checked'))
+          .map(checkbox => checkbox.value)
+          .filter(category => category !== 'Total');
+      }
+
+      function getFilteredData(selectedMonth) {
+        if (selectedMonth === 'all') {
+          return processedData;
+        } else {
+          return processedData.filter(row => row.month === selectedMonth);
+        }
+      }
+
+      function renderTotalSalesChart(selectedMonth, selectedCategories) {
+        const chartData = processedData.map(row => ({
+          x: row.month,
+          y: row.Total,
+          text: `$${row.Total.toLocaleString()}`
+        }));
+
+        const layout = {
+          title: 'Total Over Time',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Total ($)' },
+          margin: { t: 50, r: 20, b: 40, l: 60 }
+        };
+
+        const config = {
+          displayModeBar: false,
+          responsive: true
+        };
+
+        Plotly.newPlot('total-sales-chart', [{
+          type: 'scatter',
+          mode: 'lines+markers',
+          x: chartData.map(d => d.x),
+          y: chartData.map(d => d.y),
+          text: chartData.map(d => d.text),
+          hoverinfo: 'text+x',
+          line: { color: '#3498db', width: 3 },
+          marker: { size: 8, color: '#2980b9' }
+        }], layout, config);
+      }
+
+      function renderMoMGrowthChart(selectedMonth) {
+        // Skip first month as it has no growth data
+        const chartData = processedData.slice(1).map(row => ({
+          x: row.month,
+          y: row.growthPercent,
+          color: row.growthPercent >= 0 ? '#2ecc71' : '#e74c3c',
+          text: `${row.growthPercent.toFixed(1)}%`
+        }));
+
+        const layout = {
+          title: 'Month-over-Month Growth (%)',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Growth (%)' },
+          margin: { t: 50, r: 20, b: 40, l: 60 }
+        };
+
+        const config = {
+          displayModeBar: false,
+          responsive: true
+        };
+
+        Plotly.newPlot('mom-growth-chart', [{
+          type: 'bar',
+          x: chartData.map(d => d.x),
+          y: chartData.map(d => d.y),
+          text: chartData.map(d => d.text),
+          hoverinfo: 'text+x',
+          marker: {
+            color: chartData.map(d => d.color)
+          }
+        }], layout, config);
+      }
+
+      function renderCategoryTrendsChart(selectedMonth, selectedCategories) {
+        const layout = {
+          title: 'Category Trends',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Amount ($)' },
+          margin: { t: 50, r: 20, b: 40, l: 60 },
+          legend: { orientation: 'h', y: -0.2 }
+        };
+
+        const config = {
+          displayModeBar: false,
+          responsive: true
+        };
+
+        const traces = selectedCategories.map(category => {
+          return {
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: category,
+            x: processedData.map(row => row.month),
+            y: processedData.map(row => row[category]),
+            hoverinfo: 'y+name+x'
+          };
+        });
+
+        Plotly.newPlot('category-trends-chart', traces, layout, config);
+      }
+
+      function renderStackedCompositionChart(selectedMonth, selectedCategories) {
+        const data = selectedMonth === 'all' ? processedData : [processedData.find(row => row.month === selectedMonth)];
+        
+        const traces = selectedCategories.map(category => {
+          return {
+            type: 'bar',
+            name: category,
+            x: data.map(row => row.month),
+            y: data.map(row => row[category]),
+            hoverinfo: 'y+name+x'
+          };
+        });
+
+        const layout = {
+          title: 'Composition',
+          barmode: 'stack',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Amount ($)' },
+          margin: { t: 50, r: 20, b: 40, l: 60 },
+          legend: { orientation: 'h', y: -0.2 }
+        };
+
+        const config = {
+          displayModeBar: false,
+          responsive: true
+        };
+
+        Plotly.newPlot('stacked-composition-chart', traces, layout, config);
+      }
+
+      function renderCategoryShareChart(selectedMonth, selectedCategories) {
+        let pieData;
+        
+        if (selectedMonth === 'all') {
+          // Aggregate all months
+          pieData = selectedCategories.map(category => {
+            return {
+              category: category,
+              total: processedData.reduce((sum, row) => sum + row[category], 0)
+            };
+          });
+        } else {
+          // Just the selected month
+          const monthData = processedData.find(row => row.month === selectedMonth);
+          pieData = selectedCategories.map(category => {
+            return {
+              category: category,
+              total: monthData[category]
+            };
+          });
+        }
+
+        const layout = {
+          title: 'Category Share',
+          margin: { t: 50, r: 20, b: 40, l: 60 }
+        };
+
+        const config = {
+          displayModeBar: false,
+          responsive: true
+        };
+
+        Plotly.newPlot('category-share-chart', [{
+          type: 'pie',
+          labels: pieData.map(d => d.category),
+          values: pieData.map(d => d.total),
+          hole: 0.3,
+          hoverinfo: 'label+percent+value',
+          textinfo: 'percent'
+        }], layout, config);
+      }
+
+      function renderYTDCumulativeChart(selectedMonth) {
+        const chartData = processedData.map(row => ({
+          x: row.month,
+          y: row.cumulative,
+          text: `$${row.cumulative.toLocaleString()}`
+        }));
+
+        const layout = {
+          title: 'Year-to-Date Cumulative',
+          xaxis: { title: 'Month' },
+          yaxis: { title: 'Cumulative Total ($)' },
+          margin: { t: 50, r: 20, b: 40, l: 60 }
+        };
+
+        const config = {
+          displayModeBar: false,
+          responsive: true
+        };
+
+        Plotly.newPlot('ytd-cumulative-chart', [{
+          type: 'scatter',
+          mode: 'lines+markers',
+          x: chartData.map(d => d.x),
+          y: chartData.map(d => d.y),
+          text: chartData.map(d => d.text),
+          hoverinfo: 'text+x',
+          line: { color: '#9b59b6', width: 3 },
+          marker: { size: 8, color: '#8e44ad' }
+        }], layout, config);
+      }
+
+      // Helper function to sort months correctly
+      function getMonthSortKey(monthStr) {
+        const [month, year] = monthStr.split('-');
+        const monthMap = {
+          'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6, 
+          'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+        };
+        
+        return parseInt(`${year}${monthMap[month].toString().padStart(2, '0')}`);
+      }
+    });
+  </script>
+</body>
+</html>
