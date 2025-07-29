@@ -261,6 +261,7 @@ function loadHeader() {
                                 <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
                                 <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                                 <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+                                <li class="nav-item"><a class="nav-link" href="our-team.html">Our Team</a></li>
                                 <!-- Other commented out menu items -->
                             </ul>
                         </div>                    

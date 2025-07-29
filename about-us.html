@@ -318,6 +318,8 @@
 
                                 <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
 
+                                <li class="nav-item"><a class="nav-link" href="our-team.html">Our Team</a></li>
+
                                 <!-- Other commented out menu items -->
 
                             </ul>
@@ -479,6 +481,14 @@
 
 
                             </p>
+
+                            <!-- Meet Our Team Button Start -->
+                            <div class="meet-team-btn wow fadeInUp" data-wow-delay="0.5s" style="margin-top: 30px;">
+                                <div class="glare-hover">
+                                    <a href="our-team.html" class="team-btn">Meet Our Team</a>
+                                </div>
+                            </div>
+                            <!-- Meet Our Team Button End -->
 
                         </div>
 
@@ -730,7 +740,7 @@
 
                             <li class="wow fadeInUp">
 
-                                Omega Medical Billing is one of the top medical billing companies in the USA,
+                                Omega Medical Billing is one of the top medical billing companies accross the country,
 
                                 specializing in managing the revenue cycle for practices. We provide access to
 
@@ -2487,6 +2497,48 @@
     .section-title h3 {
         font-size: 1.1rem !important;
     }
+}
+
+/* Glare Hover Effect for Meet Our Team Button */
+.glare-hover {
+    position: relative;
+    display: inline-block;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.team-btn {
+    background-color: #007BFF;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.glare-hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(-20deg, transparent 60%, rgba(255,255,255,0.25) 70%, transparent 80%);
+    transition: transform 600ms ease;
+    transform: translateX(-100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.glare-hover:hover::before {
+    transform: translateX(100%);
 }
 
 

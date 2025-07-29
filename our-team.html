@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+
+<html lang="zxx">
+
+
+<head>
+
+    <!-- Meta -->
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="keywords" content="">
+
+    <meta name="author" content="Awaiken">
+
+    <!-- Page Title -->
+
+    <title>Our Team - Omega Medical Billing</title>
+
+    <!-- Favicon Icon -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon/web-app-manifest-512x512.png">
+
+    <!-- Google Fonts Css-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap Css -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- SlickNav Css -->
+
+    <link href="css/slicknav.min.css" rel="stylesheet">
+
+    <!-- Swiper Css -->
+
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+
+    <!-- Font Awesome Icon Css-->
+
+    <link href="css/all.min.css" rel="stylesheet" media="screen">
+
+    <!-- Animated Css -->
+
+    <link href="css/animate.css" rel="stylesheet">
+
+    <!-- Magnific Popup Core Css File -->
+
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Main Custom Css -->
+
+    <link href="css/custom.css" rel="stylesheet" media="screen">
+
+    <!-- MagicBento CSS -->
+    <style>
+        /* Page Background */
+        body {
+            background-color: #ffffff !important;
+        }
+        
+        /* MagicBento Base Styles */
+        .magic-bento-container {
+            position: relative;
+            padding: 60px 0;
+            background: #ffffff;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(132, 0, 255, 0.1) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-image {
+            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            flex: 1;
+            color: #333333;
+        }
+
+        .team-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        .team-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .team-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555555;
+            margin: 0;
+        }
+
+        /* Tilt Effect */
+        .team-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(132, 0, 255, 0.3);
+        }
+
+        /* Glow Effect */
+        .team-card:hover {
+            box-shadow: 0 0 30px rgba(132, 0, 255, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Stars Background */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Spotlight Effect */
+        .spotlight {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transition: transform 0.1s ease;
+        }
+
+        /* Page Header Styles */
+        .page-header {
+            background: #ffffff;
+            padding: 100px 0 60px;
+            text-align: center;
+            color: #333333;
+            border-bottom: 1px solid #eee;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 15px;
+            }
+
+            .team-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .team-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+
+            .team-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-card {
+                padding: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Modal Styles */
+        .team-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .team-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.8) translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #666;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            background: #f0f0f0;
+            color: #333;
+            outline: none;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .modal-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .modal-info h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+
+        .modal-info .modal-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .modal-expanded-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #666;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #007BFF;
+        }
+
+        /* Mobile Modal Styles */
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+
+            .modal-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .modal-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .modal-info h2 {
+                font-size: 1.8rem;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 15px;
+            }
+        }
+
+        /* Enhanced Click Indicator */
+        .team-card {
+            cursor: pointer;
+            transition: all 0.3s ease, transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-10px) scale(1.02);
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            background: #ffffff;
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .contact-btn:hover,
+        .contact-btn:focus {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+            color: #ffffff;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .contact-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 60px 20px;
+            }
+
+            .contact-section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-section p {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+
+            .contact-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-section {
+                padding: 40px 15px;
+            }
+
+            .contact-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <!-- <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon">
+                <img src="images//LOGO OMEGA-Redesign.png" alt="">
+            </div>
+        </div>
+    </div> -->
+    <!-- Preloader End -->
+
+    <!-- Floating Social Icons -->
+    <div class="Floating-social-icons">
+        <a href="tel:+1713-702-7332" title="Call"><i class="fa-solid fa-phone"></i></a>
+        <a href="sms:+1713-702-7332?body=Hello%20there!" title="SMS"><i class="fa-solid fa-message"></i></a>
+        <a href="mailto:info@ombcs.com" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <!-- Topbar Section Start -->
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 topbar-contact-info">
+                    <ul class="list-unstyled d-flex flex-wrap align-items-center justify-content-evenly mb-0 top">
+                        <!-- Business Info -->
+                        <li class="d-flex align-items-center gap-2 text-white fw--semibold" style="font-size: 12px;">
+                            <i class="fa-solid fa-clock"></i>
+                            <span><strong>Business Hours:</strong> 08:00 to 05:00 | Monday to Friday</span>
+                        </li>
+
+                        <li class="d-flex align-items-center gap-2 text-white fw--semibold" style="font-size: 12px;">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:+17137027332" class="fw-bold text-decoration-none text-white">
+                                <strong>Contact:</strong> +1&nbsp;713-702-7332
+                            </a>
+                        </li>
+
+                        <li class="d-flex align-items-center gap-2 text-white fw--semibold" style="font-size: 12px;">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:info@ombcs.com" class="text-decoration-none text-white">
+                                <strong>Email:</strong> info@ombcs.com
+                            </a>
+                        </li>
+
+                        <li class="d-flex align-items-center gap-2 text-white fw--semibold" style="font-size: 12px;">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>906 W. Medical Center Blvd, Webster TX 77598</span>
+                        </li>
+
+                        <!-- Social Media Icons Separate -->
+                        <li class="d-flex align-items-center social-icons-wrapper">
+                            <a href="https://www.instagram.com/omega_mbs/" target="_blank" class="social-icon">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://www.facebook.com/omegamedicalbilling" target="_blank" class="social-icon">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/omega-medical-billing" target="_blank"
+                                class="social-icon">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar Section End -->
+
+    <!-- Header Start -->
+    <header class="main-header position-sticky top-0 z-3 transition-navbar">
+        <div class="header-sticky">
+            <nav class="navbar navbar-expand-lg  bg-white shadow-sm background-992-fff">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/LOGO OMEGA-Redesign.png" alt="Logo" width="100" height="auto" loading="lazy">
+                    </a>
+
+                    <div class="collapse navbar-collapse main-menu">
+                        <div class="nav-menu-wrapper">
+                            <ul class="navbar-nav mr-auto" id="menu">
+                                <li class="nav-item submenu"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                                
+                                <!-- SERVICES DROPDOWN MENU -->
+                                <li class="nav-item submenu"><a class="nav-link" href="#">Services</a>
+                                    <ul>
+                                        <li class="nav-item"><a class="nav-link" href="medical-billing.html">Medical Billing</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="revenue-cycle-management.html">Revenue Cycle Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="medical-coding.html">Medical Coding</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="denial-management.html">Denial Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="provider-credentialing.html">Provider Credentialing</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="medical-billing-audit.html">Medical Billing Audit</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- SPECIALTIES DROPDOWN MENU -->
+                                <li class="nav-item submenu"><a class="nav-link" href="specialties.html">Specialties</a>
+                                    <ul>
+                                        <li class="nav-item"><a class="nav-link" href="cardiology.html">Cardiology</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="radiology.html">Radiology</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="urology.html">Urology</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="oncology.html">Oncology</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="primary-care.html">Primary Care</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="nephrology.html">Nephrology</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="obgyn.html">OBGYN</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="dermatology.html">Dermatology</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="podiatry.html">Podiatry</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="specialties.html">Explore All</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item"><a class="nav-link" href="statements.html">Statement</a></li>
+                                <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+                                <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                                <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+                                <li class="nav-item"><a class="nav-link" href="our-team.html">Our Team</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="navbar-toggle"></div>
+                </div>
+            </nav>
+            <div class="responsive-menu"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="wow fadeInUp">Our Team</h1>
+            <p class="wow fadeInUp" data-wow-delay="0.2s">
+                Meet the dedicated professionals who make Omega Medical Billing a trusted partner in healthcare revenue management. Our team combines decades of experience with cutting-edge technology to deliver exceptional results.
+            </p>
+        </div>
+    </div>
+
+    <!-- MagicBento Team Section -->
+    <div class="magic-bento-container" id="magicBentoContainer">
+        <!-- Stars Background -->
+        <div class="stars" id="starsContainer"></div>
+        
+        <!-- Spotlight Effect -->
+        <div class="spotlight" id="spotlight"></div>
+
+        <div class="team-grid">
+            <!-- Samina Munawar -->
+            <div class="team-card" data-team-member="samina">
+                <div class="team-content">
+                    <div class="team-image">
+                        <img src="images/samina_front.png" alt="Samina Munawar" loading="lazy" onerror="this.src='https://via.placeholder.com/150x150/667eea/ffffff?text=SM'">
+                    </div>
+                    <div class="team-info">
+                        <h3>Samina Munawar</h3>
+                        <p class="team-title">President</p>
+                        <p>With over 15 years of experience in medical billing and practice management, Samina leads our operations with precision and dedication. Her expertise in revenue cycle optimization has helped hundreds of healthcare practices maximize their financial performance while maintaining compliance with ever-changing regulations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amber Pruitt -->
+            <div class="team-card" data-team-member="amber">
+                <div class="team-content">
+                    <div class="team-image">
+                        <img src="images/aber_front.png" alt="Amber Pruitt" loading="lazy" onerror="this.src='https://via.placeholder.com/150x150/764ba2/ffffff?text=AP'">
+                    </div>
+                    <div class="team-info">
+                        <h3>Amber Pruitt</h3>
+                        <p class="team-title">Chief Operating Officer</p>
+                        <p>As our Senior Medical Coding Specialist, Amber brings exceptional attention to detail and deep knowledge of ICD-10, CPT, and HCPCS coding systems. Her commitment to accuracy and efficiency ensures that our clients' claims are processed smoothly, reducing denials and accelerating reimbursements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heather Unruh -->
+            <div class="team-card" data-team-member="heather">
+                <div class="team-content">
+                    <div class="team-image">
+                        <img src="images/heather_front.png" alt="Heather Unruh" loading="lazy" onerror="this.src='https://via.placeholder.com/150x150/667eea/ffffff?text=HU'">
+                    </div>
+                    <div class="team-info">
+                        <h3>Heather Unruh</h3>
+                        <p class="team-title">Credentialing Expert</p>
+                        <p>Heather specializes in denial management and appeals processing, with a proven track record of recovering lost revenue for our clients. Her analytical approach and persistence in following up on denied claims have resulted in significant improvements in collection rates across multiple specialties.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cassandra Gabriel -->
+            <div class="team-card" data-team-member="cassandra">
+                <div class="team-content">
+                    <div class="team-image">
+                        <img src="images/cassandra_front.png" alt="Cassandra Gabriel" loading="lazy" onerror="this.src='https://via.placeholder.com/150x150/764ba2/ffffff?text=CG'">
+                    </div>
+                    <div class="team-info">
+                        <h3>Cassandra Gabriel</h3>
+                        <p class="team-title">Patient Advocate</p>
+                        <p>Our Client Relations Manager, Cassandra ensures seamless communication between our team and healthcare providers. Her dedication to customer service and problem-solving skills make her an invaluable liaison, helping practices navigate complex billing challenges with confidence and ease.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Modal -->
+    <div class="team-modal" id="teamModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Close modal" tabindex="0">&times;</button>
+            <div class="modal-header">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalName"></h2>
+                    <p class="modal-title" id="modalTitle"></p>
+                </div>
+            </div>
+            <div class="modal-description" id="modalDescription"></div>
+            <div class="modal-expanded-description" id="modalExpandedDescription"></div>
+        </div>
+    </div>
+
+    <!-- Contact Us Section Start -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="wow fadeInUp">Contact Us</h2>
+                    <p class="wow fadeInUp" data-wow-delay="0.2s">
+                        If you'd like to connect with our team, learn more about our services, or get support, feel free to reach out. We're here to help!
+                    </p>
+                    <div class="wow fadeInUp" data-wow-delay="0.4s">
+                        <a href="contact-us.html" class="contact-btn" tabindex="0">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Us Section End -->
+
+    <!-- Footer Start -->
+    <div id="footerContainer"></div>
+
+    <!-- Scripts -->
+    <!-- Jquery Library File -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap js file -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Validator js file -->
+    <script src="js/validator.min.js"></script>
+    <!-- SlickNav js file -->
+    <script src="js/jquery.slicknav.js"></script>
+    <!-- Footer js -->
+    <script src="js/footer.js"></script>
+    <!-- Swiper js file -->
+    <script src="js/swiper-bundle.min.js"></script>
+    <!-- Counter js file -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <!-- Isotop js file -->
+    <script src="js/isotope.min.js"></script>
+    <!-- Magnific js file -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <!-- SmoothScroll -->
+    <script src="js/SmoothScroll.js"></script>
+    <!-- Parallax js -->
+    <script src="js/parallaxie.js"></script>
+    <!-- MagicCursor js file -->
+    <script src="js/gsap.min.js"></script>
+    <!-- Text Effect js file -->
+    <script src="js/SplitText.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <!-- YTPlayer js File -->
+    <script src="js/jquery.mb.YTPlayer.min.js"></script>
+    <!-- Wow js file -->
+    <script src="js/wow.min.js"></script>
+    <!-- Main Custom js file -->
+    <script src="js/function.js"></script>
+
+    <!-- MagicBento Implementation -->
+    <script>
+        class MagicBento {
+            constructor(container, options = {}) {
+                this.container = container;
+                this.options = {
+                    textAutoHide: options.textAutoHide || true,
+                    enableStars: options.enableStars || true,
+                    enableSpotlight: options.enableSpotlight || true,
+                    enableBorderGlow: options.enableBorderGlow || true,
+                    enableTilt: options.enableTilt || true,
+                    enableMagnetism: options.enableMagnetism || true,
+                    clickEffect: options.clickEffect || true,
+                    spotlightRadius: options.spotlightRadius || 300,
+                    particleCount: options.particleCount || 12,
+                    glowColor: options.glowColor || "132, 0, 255"
+                };
+                
+                this.init();
+            }
+
+            init() {
+                if (this.options.enableStars) {
+                    this.createStars();
+                }
+                
+                if (this.options.enableSpotlight) {
+                    this.initSpotlight();
+                }
+                
+                this.initCards();
+                this.bindEvents();
+            }
+
+            createStars() {
+                const starsContainer = document.getElementById('starsContainer');
+                if (!starsContainer) return;
+
+                for (let i = 0; i < this.options.particleCount; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.animationDelay = Math.random() * 2 + 's';
+                    starsContainer.appendChild(star);
+                }
+            }
+
+            initSpotlight() {
+                const spotlight = document.getElementById('spotlight');
+                if (!spotlight) return;
+
+                document.addEventListener('mousemove', (e) => {
+                    const x = e.clientX - this.options.spotlightRadius / 2;
+                    const y = e.clientY - this.options.spotlightRadius / 2;
+                    spotlight.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            }
+
+            initCards() {
+                const cards = document.querySelectorAll('.team-card');
+                
+                cards.forEach(card => {
+                    if (this.options.enableMagnetism) {
+                        this.initMagnetism(card);
+                    }
+                    
+                    if (this.options.clickEffect) {
+                        this.initClickEffect(card);
+                    }
+                });
+            }
+
+            initMagnetism(card) {
+                card.addEventListener('mouseenter', (e) => {
+                    card.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const deltaX = (x - centerX) / centerX;
+                    const deltaY = (y - centerY) / centerY;
+                    
+                    const rotateX = deltaY * -10;
+                    const rotateY = deltaX * 10;
+                    
+                    if (this.options.enableTilt) {
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+            }
+
+            initClickEffect(card) {
+                card.addEventListener('click', (e) => {
+                    const ripple = document.createElement('div');
+                    const rect = card.getBoundingClientRect();
+                    const size = 100;
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        border-radius: 50%;
+                        background: rgba(${this.options.glowColor}, 0.6);
+                        left: ${x}px;
+                        top: ${y}px;
+                        animation: ripple 0.6s linear;
+                        pointer-events: none;
+                        z-index: 1000;
+                    `;
+                    
+                    card.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            }
+
+            bindEvents() {
+                // Add ripple animation keyframes
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes ripple {
+                        0% {
+                            transform: scale(0);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: scale(4);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // Initialize MagicBento when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('magicBentoContainer');
+            
+            if (container) {
+                const magicBento = new MagicBento(container, {
+                    textAutoHide: true,
+                    enableStars: true,
+                    enableSpotlight: true,
+                    enableBorderGlow: true,
+                    enableTilt: true,
+                    enableMagnetism: true,
+                    clickEffect: true,
+                    spotlightRadius: 300,
+                    particleCount: 12,
+                    glowColor: "132, 0, 255"
+                });
+            }
+        });
+    </script>
+
+    <!-- Team Modal JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Team member data with expanded descriptions
+            const teamData = {
+                'samina': {
+                    name: 'Samina Munawar',
+                    title: 'President',
+                    image: 'images/samina_front.png',
+                    description: 'With over 15 years of experience in medical billing and practice management, Samina leads our operations with precision and dedication. Her expertise in revenue cycle optimization has helped hundreds of healthcare practices maximize their financial performance while maintaining compliance with ever-changing regulations.',
+                    expandedDescription: 'Samina leads with strategic insight and passion, ensuring the team operates with integrity and excellence across every department. Her vision drives the company forward.'
+                },
+                'amber': {
+                    name: 'Amber Pruitt',
+                    title: 'Chief Operating Officer',
+                    image: 'images/aber_front.png',
+                    description: 'As our Senior Medical Coding Specialist, Amber brings exceptional attention to detail and deep knowledge of ICD-10, CPT, and HCPCS coding systems. Her commitment to accuracy and efficiency ensures that our clients\' claims are processed smoothly, reducing denials and accelerating reimbursements.',
+                    expandedDescription: 'Amber is the operational backbone, coordinating teams, managing workflows, and building scalable systems to streamline organizational success.'
+                },
+                'heather': {
+                    name: 'Heather Unruh',
+                    title: 'Credentialing Expert',
+                    image: 'images/heather_front.png',
+                    description: 'Heather specializes in denial management and appeals processing, with a proven track record of recovering lost revenue for our clients. Her analytical approach and persistence in following up on denied claims have resulted in significant improvements in collection rates across multiple specialties.',
+                    expandedDescription: 'Heather specializes in navigating the complex world of medical credentialing. Her attention to detail ensures compliance, accuracy, and timely approvals for all providers.'
+                },
+                'cassandra': {
+                    name: 'Cassandra Gabriel',
+                    title: 'Patient Advocate',
+                    image: 'images/cassandra_front.png',
+                    description: 'Our Client Relations Manager, Cassandra ensures seamless communication between our team and healthcare providers. Her dedication to customer service and problem-solving skills make her an invaluable liaison, helping practices navigate complex billing challenges with confidence and ease.',
+                    expandedDescription: 'Cassandra works directly with patients to understand their needs, resolve concerns, and ensure each voice is heard. Her empathy and dedication make a real difference.'
+                }
+            };
+
+            // Modal elements
+            const modal = document.getElementById('teamModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalImage = document.getElementById('modalImage');
+            const modalName = document.getElementById('modalName');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalExpandedDescription = document.getElementById('modalExpandedDescription');
+
+            // Team cards
+            const teamCards = document.querySelectorAll('.team-card');
+
+            // Add click handlers to team cards
+            teamCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Prevent the MagicBento click effect from interfering
+                    e.preventDefault();
+                    
+                    const memberKey = card.getAttribute('data-team-member');
+                    const memberData = teamData[memberKey];
+                    
+                    if (memberData) {
+                        // Populate modal content
+                        modalImage.src = memberData.image;
+                        modalImage.alt = memberData.name;
+                        modalName.textContent = memberData.name;
+                        modalTitle.textContent = memberData.title;
+                        modalDescription.textContent = memberData.description;
+                        modalExpandedDescription.textContent = memberData.expandedDescription;
+                        
+                        // Show modal
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                        
+                        // Focus on close button for accessibility
+                        modalClose.focus();
+                    }
+                });
+
+                // Add keyboard support
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        card.click();
+                    }
+                });
+
+                // Make cards focusable
+                card.setAttribute('tabindex', '0');
+            });
+
+            // Close modal handlers
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            modalClose.addEventListener('click', closeModal);
+
+            // Close on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // Close on backdrop click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Keyboard support for close button
+            modalClose.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+    <!-- Chat iframe -->
+    <iframe id="chatbot-iframe" src="https://preeminent-custard-eac374.netlify.app"></iframe>
+
+    <!-- Toggle button -->
+    <button id="chatbot-toggle" title="Chat with us">💬</button>
+
+    <!-- Mini Popup Modal -->
+    <div id="chat-popup">
+        <h3>How can we help you?</h3>
+        <p>I can help with billing questions, insurance information, or scheduling assistance.</p>
+        <div class="d-flex justify-content-between">
+            <button id="start-chat">Start Chat</button>
+            <button id="close-popup">Close</button>
+        </div>
+    </div>
+
+    <!-- Chat Scripts -->
+    <script>
+        const toggleButton = document.getElementById('chatbot-toggle');
+        const iframe = document.getElementById('chatbot-iframe');
+        const popup = document.getElementById('chat-popup');
+        const startChat = document.getElementById('start-chat');
+        const closePopup = document.getElementById('close-popup');
+
+        // Show popup on every page load
+        window.addEventListener('load', () => {
+            popup.classList.add('show');
+            iframe.style.display = 'none';
+            toggleButton.classList.remove('open');
+        });
+
+        // Toggle button click
+        toggleButton.addEventListener('click', () => {
+            const isPopupVisible = popup.classList.contains('show');
+            const isIframeVisible = iframe.style.display === 'block';
+
+            if (isIframeVisible) {
+                iframe.style.display = 'none';
+                toggleButton.classList.remove('open');
+            } else {
+                popup.classList.toggle('show');
+            }
+        });
+
+        // Start Chat click
+        startChat.addEventListener('click', () => {
+            iframe.style.display = 'block';
+            popup.classList.remove('show');
+            toggleButton.classList.add('open');
+        });
+
+        // Close popup
+        closePopup.addEventListener('click', () => {
+            popup.classList.remove('show');
+        });
+    </script>
+
+    <!-- Chat Styles -->
+    <style>
+        #chatbot-iframe {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            display: none;
+        }
+
+        #chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #0B2452;
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 10000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        #chatbot-toggle.open {
+            background-color: #dc3545;
+        }
+
+        #chat-popup {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 10001;
+            width: 320px;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #chat-popup.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        #chat-popup h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        #chat-popup p {
+            margin-bottom: 16px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        #chat-popup button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #start-chat {
+            background-color: #0B2452;
+            color: white;
+        }
+
+        #close-popup {
+            background-color: #ccc;
+            color: black;
+        }
+    </style>
+
+</body>
+
+</html>
