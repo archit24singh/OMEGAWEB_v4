@@ -141,9 +141,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: center top;
             transition: transform 0.3s ease;
             border-radius: 15px;
+        }
+
+        /* Specific adjustments for Samina and Cassandra to remove black line */
+        .team-card[data-team-member="samina"] .team-image img {
+            object-position: center 15%;
+        }
+
+        .team-card[data-team-member="cassandra"] .team-image img {
+            object-position: center 15%;
         }
 
         .team-card:hover .team-image img {
@@ -376,7 +385,16 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: center top;
+        }
+
+        /* Modal image adjustments for Samina and Cassandra */
+        .team-modal.active .modal-image img[src*="samina_front.png"] {
+            object-position: center 15%;
+        }
+
+        .team-modal.active .modal-image img[src*="cassandra_front.png"] {
+            object-position: center 15%;
         }
 
         .modal-info h2 {
