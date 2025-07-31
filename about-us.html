@@ -2400,6 +2400,21 @@
     mix-blend-mode: screen;
 }
 
+/* Desktop-specific light rays */
+@media (min-width: 769px) {
+    #lightRaysContainer .desktop-rays {
+        opacity: 1;
+        filter: none;
+        mix-blend-mode: screen;
+    }
+    
+    #lightRaysContainer .desktop-rays canvas {
+        image-rendering: auto;
+        image-rendering: crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
 /* Our Vision Section Styles */
 .our-vision {
     background: #ffffff !important;
@@ -2478,6 +2493,21 @@
     .section-title p {
         font-size: 1rem !important;
         line-height: 1.6;
+    }
+    
+    /* Mobile-specific light rays container */
+    #lightRaysContainer .mobile-rays {
+        opacity: 0.7 !important;
+        filter: blur(0.5px);
+        will-change: transform, opacity;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+    
+    /* Disable hardware acceleration issues on mobile */
+    #lightRaysContainer .mobile-rays canvas {
+        transform: translateZ(0);
+        will-change: transform;
     }
 }
 
@@ -2634,25 +2664,83 @@ document.addEventListener('DOMContentLoaded', function() {
     const lightRaysContainer = document.getElementById('lightRaysContainer');
     
     if (lightRaysContainer) {
-        // Mobile-optimized settings
         const isMobile = window.innerWidth <= 768;
-        const lightRays = new LightRays(lightRaysContainer, {
-            raysOrigin: 'top-center',
-            raysColor: '#ffffff',
-            raysSpeed: isMobile ? 1.0 : 1.5,
-            lightSpread: isMobile ? 1.2 : 0.8,
-            rayLength: isMobile ? 1.0 : 1.2,
-            followMouse: !isMobile, // Disable mouse tracking on mobile
-            mouseInfluence: isMobile ? 0.0 : 0.1,
-            noiseAmount: isMobile ? 0.05 : 0.1,
-            distortion: isMobile ? 0.02 : 0.05,
-            className: 'custom-rays'
-        });
         
-        // Store reference for potential cleanup
-        window.ourApproachLightRays = lightRays;
+        if (isMobile) {
+            // Mobile-specific LightRays initialization
+            initializeMobileLightRays(lightRaysContainer);
+        } else {
+            // Desktop LightRays initialization
+            initializeDesktopLightRays(lightRaysContainer);
+        }
+        
+        // Handle window resize to reinitialize if needed
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                const newIsMobile = window.innerWidth <= 768;
+                
+                // Clean up existing instance
+                if (window.ourApproachLightRays && window.ourApproachLightRays.destroy) {
+                    window.ourApproachLightRays.destroy();
+                }
+                
+                // Reinitialize based on new screen size
+                if (newIsMobile) {
+                    initializeMobileLightRays(lightRaysContainer);
+                } else {
+                    initializeDesktopLightRays(lightRaysContainer);
+                }
+            }, 250);
+        });
     }
 });
+
+// Mobile-specific LightRays configuration
+function initializeMobileLightRays(container) {
+    const lightRays = new LightRays(container, {
+        raysOrigin: 'top-center',
+        raysColor: '#ffffff',
+        raysSpeed: 0.8,
+        lightSpread: 1.5,
+        rayLength: 0.8,
+        followMouse: false,
+        mouseInfluence: 0.0,
+        noiseAmount: 0.03,
+        distortion: 0.01,
+        className: 'custom-rays mobile-rays',
+        // Mobile-specific optimizations
+        frameRate: 30, // Lower frame rate for better performance
+        particleCount: 20, // Fewer particles
+        enableTouch: true, // Enable touch interactions
+        touchInfluence: 0.15 // Light touch influence for mobile
+    });
+    
+    window.ourApproachLightRays = lightRays;
+}
+
+// Desktop LightRays configuration
+function initializeDesktopLightRays(container) {
+    const lightRays = new LightRays(container, {
+        raysOrigin: 'top-center',
+        raysColor: '#ffffff',
+        raysSpeed: 1.5,
+        lightSpread: 0.8,
+        rayLength: 1.2,
+        followMouse: true,
+        mouseInfluence: 0.1,
+        noiseAmount: 0.1,
+        distortion: 0.05,
+        className: 'custom-rays desktop-rays',
+        // Desktop-specific optimizations
+        frameRate: 60, // Higher frame rate for smooth desktop experience
+        particleCount: 40, // More particles for richer effect
+        enableTouch: false
+    });
+    
+    window.ourApproachLightRays = lightRays;
+}
 </script>
 
 <!-- Savings Calculator Script -->

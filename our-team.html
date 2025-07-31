@@ -101,6 +101,9 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
         }
 
         .team-card::before {
@@ -122,10 +125,11 @@
 
         .team-content {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 25px;
             position: relative;
             z-index: 2;
+            flex: 1;
         }
 
         .team-image {
@@ -184,6 +188,21 @@
             line-height: 1.6;
             color: #555555;
             margin: 0;
+        }
+
+        .click-hint {
+            color: #007BFF;
+            font-weight: 600;
+            font-style: italic;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .click-hint:hover {
+            color: #0056b3;
+            text-decoration: underline;
         }
 
         /* Tilt Effect */
@@ -324,7 +343,7 @@
 
         .modal-content {
             background: white;
-            border-radius: 20px;
+            border-radius: 30px;
             padding: 40px;
             max-width: 600px;
             width: 90%;
@@ -334,6 +353,13 @@
             transform: scale(0.8) translateY(20px);
             transition: transform 0.3s ease;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            /* Hide scrollbar for webkit browsers */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .modal-content::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
         .team-modal.active .modal-content {
@@ -721,7 +747,7 @@
                     <div class="team-info">
                         <h3>Samina Munawar</h3>
                         <p class="team-title">President</p>
-                        <p>With over 15 years of experience in medical billing and practice management, Samina leads our operations with precision and dedication. Her expertise in revenue cycle optimization has helped hundreds of healthcare practices maximize their financial performance while maintaining compliance with ever-changing regulations.</p>
+                        <p>With over 25 years of experience in medical billing and practice management, Samina serves as the visionary President of Omega Medical Billing. She leads operations across multiple billing locations and drives excellence at every level of the organization. <span class="click-hint">Click to read more...</span></p>
                     </div>
                 </div>
             </div>
@@ -735,7 +761,7 @@
                     <div class="team-info">
                         <h3>Amber Pruitt</h3>
                         <p class="team-title">Chief Operating Officer</p>
-                        <p>As our Senior Medical Coding Specialist, Amber brings exceptional attention to detail and deep knowledge of ICD-10, CPT, and HCPCS coding systems. Her commitment to accuracy and efficiency ensures that our clients' claims are processed smoothly, reducing denials and accelerating reimbursements.</p>
+                        <p>With over 15 years of dedicated service at Omega Medical Billing, Amber is the driving force behind our operational excellence. As Chief Operating Officer, she oversees multiple departments across the full revenue cycle management process. <span class="click-hint">Click to read more...</span></p>
                     </div>
                 </div>
             </div>
@@ -749,7 +775,7 @@
                     <div class="team-info">
                         <h3>Heather Unruh</h3>
                         <p class="team-title">Credentialing Expert</p>
-                        <p>Heather specializes in denial management and appeals processing, with a proven track record of recovering lost revenue for our clients. Her analytical approach and persistence in following up on denied claims have resulted in significant improvements in collection rates across multiple specialties.</p>
+                        <p>Heather leads Omega Medical Billing's credentialing department with expertise and precision. She oversees both insurance and hospital credentialing for all providers, ensuring seamless onboarding and timely approvals across multiple specialties. <span class="click-hint">Click to read more...</span></p>
                     </div>
                 </div>
             </div>
@@ -763,7 +789,7 @@
                     <div class="team-info">
                         <h3>Cassandra Gabriel</h3>
                         <p class="team-title">Patient Advocate</p>
-                        <p>Our Client Relations Manager, Cassandra ensures seamless communication between our team and healthcare providers. Her dedication to customer service and problem-solving skills make her an invaluable liaison, helping practices navigate complex billing challenges with confidence and ease.</p>
+                        <p>As our client relations manager, Cassandra ensures seamless communication between our team and healthcare providers. Her dedication to customer service makes her an invaluable liaison for practices. <span class="click-hint">Click to read more...</span></p>
                     </div>
                 </div>
             </div>
@@ -1025,29 +1051,29 @@
                     name: 'Samina Munawar',
                     title: 'President',
                     image: 'images/samina_front.png',
-                    description: 'With over 15 years of experience in medical billing and practice management, Samina leads our operations with precision and dedication. Her expertise in revenue cycle optimization has helped hundreds of healthcare practices maximize their financial performance while maintaining compliance with ever-changing regulations.',
-                    expandedDescription: 'Samina leads with strategic insight and passion, ensuring the team operates with integrity and excellence across every department. Her vision drives the company forward.'
+                    description: 'With over 25 years of experience in medical billing and practice management, Samina serves as the visionary President of Omega Medical Billing. She leads operations across multiple billing locations and drives excellence at every level of the organization.',
+                    expandedDescription: 'With over 25 years of experience in medical billing and practice management, Samina Munawar serves as the visionary President of Omega Medical Billing. She leads operations across multiple billing locations and oversees a combined team of more than 500 employees, driving excellence at every level of the organization.\n\nWell‑known for her top‑notch client relationships, Samina has built long‑standing partnerships founded on trust, transparency, and exceptional service. Her expertise in revenue cycle optimization has empowered hundreds of healthcare practices to maximize their financial performance while maintaining strict compliance with evolving industry regulations. Guided by strategic insight and a passion for excellence, Samina fosters a culture of integrity, collaboration, and innovation across every department. Her leadership continues to propel Omega Medical Billing toward sustained growth and long‑term success.'
                 },
                 'amber': {
                     name: 'Amber Pruitt',
                     title: 'Chief Operating Officer',
                     image: 'images/aber_front.png',
-                    description: 'As our Senior Medical Coding Specialist, Amber brings exceptional attention to detail and deep knowledge of ICD-10, CPT, and HCPCS coding systems. Her commitment to accuracy and efficiency ensures that our clients\' claims are processed smoothly, reducing denials and accelerating reimbursements.',
-                    expandedDescription: 'Amber is the operational backbone, coordinating teams, managing workflows, and building scalable systems to streamline organizational success.'
+                    description: 'With over 15 years of dedicated service at Omega Medical Billing, Amber is the driving force behind our operational excellence. As Chief Operating Officer, she oversees multiple departments across the full revenue cycle management process.',
+                    expandedDescription: 'With over 15 years of dedicated service at Omega Medical Billing, Amber Pruitt is the driving force behind our operational excellence. As Chief Operating Officer, she leads operations for multiple billing locations and oversees multiple departments across the full spectrum of the revenue cycle management process.\n\nAmber brings exceptional attention to detail and deep expertise in ICD‑10, CPT, and HCPCS coding systems. Her commitment to accuracy and efficiency ensures that client claims are processed seamlessly, denials are minimized, and reimbursements are accelerated.\n\nAs the operational backbone of Omega Medical Billing, Amber coordinates teams, manages complex workflows, and builds scalable systems that streamline processes and drive sustainable success for our clients.'
                 },
                 'heather': {
                     name: 'Heather Unruh',
                     title: 'Credentialing Expert',
                     image: 'images/heather_front.png',
-                    description: 'Heather specializes in denial management and appeals processing, with a proven track record of recovering lost revenue for our clients. Her analytical approach and persistence in following up on denied claims have resulted in significant improvements in collection rates across multiple specialties.',
-                    expandedDescription: 'Heather specializes in navigating the complex world of medical credentialing. Her attention to detail ensures compliance, accuracy, and timely approvals for all providers.'
+                    description: 'Heather leads Omega Medical Billing\'s credentialing department with expertise and precision. She oversees both insurance and hospital credentialing for all providers, ensuring seamless onboarding and timely approvals across multiple specialties.',
+                    expandedDescription: 'Heather Unruh leads Omega Medical Billing\'s credentialing department with expertise, precision, and a commitment to operational excellence. She oversees both insurance and hospital credentialing for all providers, ensuring seamless onboarding, timely approvals, and uninterrupted reimbursement across multiple specialties.\n\nHer responsibilities encompass the full scope of credentialing, including new provider enrollment, payer contracting, CAQH management, Medicare and Medicaid enrollment, hospital and facility privileges, revalidations, re‑credentialing, and contract renegotiations. Heather also ensures all provider profiles remain current, accurate, and compliant with payer and regulatory requirements.\n\nBy managing insurance and hospital credentialing processes from start to finish, Heather safeguards compliance, minimizes delays, and protects revenue streams for our clients. Her attention to detail, proactive communication, and strong relationships with payers and facilities ensure that providers can focus on patient care while Omega Medical Billing handles every aspect of credentialing with precision.'
                 },
                 'cassandra': {
                     name: 'Cassandra Gabriel',
                     title: 'Patient Advocate',
                     image: 'images/cassandra_front.png',
-                    description: 'Our Client Relations Manager, Cassandra ensures seamless communication between our team and healthcare providers. Her dedication to customer service and problem-solving skills make her an invaluable liaison, helping practices navigate complex billing challenges with confidence and ease.',
-                    expandedDescription: 'Cassandra works directly with patients to understand their needs, resolve concerns, and ensure each voice is heard. Her empathy and dedication make a real difference.'
+                    description: 'As our client relations manager, Cassandra ensures seamless communication between our team and healthcare providers. Her dedication to customer service makes her an invaluable liaison for practices.',
+                    expandedDescription: 'As our client relations manager, Cassandra ensures seamless communication between our team and healthcare providers. Her dedication to customer service and problem‑solving skills make her an invaluable liaison, helping practices navigate complex billing challenges with confidence and ease.\n\nCassandra works directly with patients to understand their needs, resolve concerns, and ensure each voice is heard. Her empathy and dedication make a meaningful difference every day.'
                 }
             };
 
